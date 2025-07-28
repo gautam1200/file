@@ -1,4 +1,5 @@
 <form action="/createData">
+
     <input type="hidden" name="id" value="<%= (editData) ? editData._id : "" %>">
     <input type="text" name="name" placeholder="Enter your name" value="<%= (editData) ? editData.name : "" %>"><br><br>
     <input type="number" name="age" placeholder="Enter your age" value="<%= (editData) ? editData.age : "" %>"><br><br>
