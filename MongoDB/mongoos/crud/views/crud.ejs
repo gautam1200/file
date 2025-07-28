@@ -1,0 +1,31 @@
+<form action="/createData">
+    <input type="hidden" name="id" value="<%= (editData) ? editData._id : "" %>">
+    <input type="text" name="name" placeholder="Enter your name" value="<%= (editData) ? editData.name : "" %>"><br><br>
+    <input type="number" name="age" placeholder="Enter your age" value="<%= (editData) ? editData.age : "" %>"><br><br>
+    <input type="email" name="email" placeholder="Enter your email" value="<%= (editData) ? editData.email : "" %>"><br><br>
+    <input type="password" name="password" placeholder="Enter your password" value="<%= (editData) ? editData.password : "" %>"><br><br>
+    <button type="submit">SUBMIT</button>
+</form>
+
+<table border="4">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>password</th>
+        <th>DELETE</th>
+        <th>EDIT</th>
+    </tr>
+    <% data.map((item , index) => { %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%= item.name %></td>
+            <td><%= item.age %></td>
+            <td><%= item.email %></td>
+            <td><%= item.password %></td>
+            <td><button><a href="/deleteData/<%= item._id %>">DELETE</a></button></td>
+            <td><button><a href="/updateData/<%= item._id %>">EDIT</a></button></td>
+        </tr>
+  <%  }) %>
+</table>

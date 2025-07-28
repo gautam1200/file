@@ -1,0 +1,43 @@
+<form action="/createBox">
+    <input type="hidden" name="id" placeholder="Box Name" value="<%= (editData) ? editData._id : "" %>">
+    <input type="text" name="boxName" placeholder="Box Name" value="<%= (editData) ? editData.boxName : "" %>"><br><br>
+    <input type="email" name="email" placeholder="Box email" value="<%= (editData) ? editData.email : "" %>"><br><br>
+    <input type="password" name="password" placeholder="Box password"
+        value="<%= (editData) ? editData.password : "" %>"><br><br>
+    <input type="number" name="price" placeholder="Box price" value="<%= (editData) ? editData.price : "" %>">
+    <br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<table border="4">
+    <tr>
+        <th>Id</th>
+        <th>boxName</th>
+        <th>Email</th>
+        <th>password</th>
+        <th>price</th>
+        <th>Delete</th>
+        <th>edit</th>
+    </tr>
+    <% data.map((item , index)=> { %>
+        <tr>
+            <td>
+                <%= index + 1 %>
+            </td>
+            <td>
+                <%= item.boxName %>
+            </td>
+            <td>
+                <%= item.email %>
+            </td>
+            <td>
+                <%= item.password %>
+            </td>
+            <td>
+                <%= item.price %>
+            </td>
+            <td><button><a href="/deleteData/<%= item._id %>">delete</a></button></td>
+            <td><button><a href="/updateData/<%= item._id %>">edit</a></button></td>
+        </tr>
+        <% }) %>
+</table>
