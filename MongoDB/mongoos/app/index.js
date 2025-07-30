@@ -49,4 +49,4 @@ pass.get('/updateData/:id', async (req, res) => {
 
 
 
-pass.listen(3333)
+pass.listen(3000)

@@ -15,38 +15,15 @@ mongoose.connect('mongodb://localhost:27017/monfoosecrud')
 
 let USER = require('./model/models')
 phone.set('view engine', 'ejs')
+let UC = require('./controller/red')
 
+phone.get('/', UC.viewsPage )
 
-phone.get('/', async (req, res) => {
+phone.get('/createData', UC.Datashow)
 
-    const data = await USER.find()
+phone.get('/deleteData/:id', UC.Datadelete)
 
-    res.render('crud', { data, editData: null })
-})
-
-phone.get('/createData', async (req, res) => {
-    const data = req.query
-    if (data.id != "") {
-        await USER.findByIdAndUpdate(data.id, data)
-    } else {
-        await USER.create(data)
-    }
-    res.redirect('/')
-})
-
-phone.get('/deleteData/:id', async (req, res) => {
-    const deleteId = req.params.id
-    await USER.findByIdAndDelete(deleteId)
-    res.redirect('/')
-})
-
-phone.get('/updateData/:id', async (req, res) => {
-    const editId = req.params.id
-    const editData = await USER.findById(editId)
-    const data = await USER.find()
-
-    res.render('crud', { editData, data })
-})
+phone.get('/updateData/:id', UC.UpdateData)
 
 phone.listen(1200)
 
